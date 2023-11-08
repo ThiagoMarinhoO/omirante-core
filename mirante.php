@@ -16,6 +16,7 @@ require_once plugin_dir_path(__FILE__) . '/inc/new-checkout-fields.php';
 require_once plugin_dir_path(__FILE__) . '/inc/remove-checkout-fields.php';
 require_once plugin_dir_path(__FILE__) . '/inc/shortcodes/menu.php';
 require_once plugin_dir_path(__FILE__) . '/inc/shortcodes/input-hidden.php';
+require_once plugin_dir_path(__FILE__) . '/inc/shortcodes/search-input.php';
 require_once plugin_dir_path(__FILE__) . '/inc/generate-pdf.php';
 require_once plugin_dir_path(__FILE__) . '/inc/generate-pdf-ajax.php';
 require_once plugin_dir_path(__FILE__) . '/inc/log-file.php';
@@ -26,19 +27,10 @@ require_once(plugin_dir_path(__FILE__) . 'vendor/autoload.php');
 function mirante_scripts() {
     wp_enqueue_style( 'main-css', plugin_dir_url( __FILE__ ).'/assets/css/main.css' );
     wp_enqueue_script( 'app-script', plugin_dir_url( __FILE__ ) . '/assets/js/app.js', array('jquery'), '1.0.0', true );
-// 	wp_localize_script( 'fonon-script', 'wpurl',
-//   array( 
-
-//       'ajax' => admin_url( 'admin-ajax.php' ),
-//       'my_account' => get_home_url() .'/minha-conta',
-//       'home' => get_home_url(),
-//       'user_logged_in' => is_user_logged_in(),
-//       'user_id' => get_current_user_id(),
-//       'post_id' => get_the_ID(),
-//   )
-
-// );
-
+	wp_localize_script( 'app-script', 'wpurl',
+        array( 
+            'ajax' => admin_url( 'admin-ajax.php' ),
+        ) );
 }
 
 add_action( 'wp_enqueue_scripts', 'mirante_scripts' );

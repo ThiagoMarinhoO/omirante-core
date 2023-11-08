@@ -32,9 +32,9 @@ function order_pdf_generate($order) {
             $meta_key = $meta->key;
             $meta_value = $meta->value;
         }
-        log_to_file('Não tá vazio essa miséra');
+        // log_to_file('Não tá vazio essa miséra');
     } else {
-        log_to_file('Metadados não encontrados para este pedido.');
+        // log_to_file('Metadados não encontrados para este pedido.');
     }
 
     // log_to_file($order);
@@ -68,8 +68,7 @@ function order_pdf_generate($order) {
     if($order->get_billing_address_2() != ''){
         $separator = ', ';
     }
-
-    if($order->get_billing_address_1() && $order->get_billing_address_2()){
+    if($order->get_billing_address_1() || $order->get_billing_address_2()){
         $pdf->Cell(202, 6, utf8_decode($order->get_billing_address_1() . $separator . $order->get_billing_address_2()), 0, 0);
     }else{
         $pdf->Cell(202, 6, utf8_decode('Endereço não informado'), 0, 0);
@@ -122,6 +121,7 @@ function order_pdf_generate($order) {
 
     $valor_total = 0;
     $pdf->SetTextColor(0,0,0);
+    $pdf->SetFont('Arial','',10);
     foreach($order->get_items() as $item_id => $item){
         $product = $item->get_product();
         // log_to_file($product);
