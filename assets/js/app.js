@@ -118,8 +118,6 @@ jQuery(document).ready(function($) {
     });
 
     
-
-    
     $(document).on('click' , 'button[name="woocommerce_checkout_place_order"]' , function(e){
       e.preventDefault()
       if($('input#billing_company').val() == ''){
@@ -127,4 +125,61 @@ jQuery(document).ready(function($) {
       }
       $('form.checkout').submit();
     })
+
+
+    //Search input
+    $('.searchProductsForm').keyup(function() {
+        var searchTerm = $(this).val();
+        if (searchTerm.length >= 3) {
+            $.ajax({
+                type: 'POST',
+                url: wpurl.ajax, // Use a variável global do WordPress para a URL do AJAX
+                data: {
+                    action: 'search_products',
+                    searchTerm: searchTerm,
+                },
+                success: function(response) {
+                      $('#search-results').show();
+                      $('#search-results').html(response);
+                }
+            });
+        } else {
+            $('#search-results').html('');
+            $('#search-results').hide();
+        }
+    });
+    
+    // MOBILE
+    $('.elementor-element-c24e6d6 .searchProductsForm').keyup(function() {
+        var searchTerm = $(this).val();
+        if (searchTerm.length >= 3) {
+            $.ajax({
+                type: 'POST',
+                url: wpurl.ajax, // Use a variável global do WordPress para a URL do AJAX
+                data: {
+                    action: 'search_products',
+                    searchTerm: searchTerm,
+                },
+                success: function(response) {
+                      $('.elementor-element-c24e6d6 #search-results').show();
+                      $('.elementor-element-c24e6d6 #search-results').html(response);
+                }
+            });
+        } else {
+            $('.elementor-element-c24e6d6 #search-results').html('');
+            $('.elementor-element-c24e6d6 #search-results').hide();
+        }
+    });
+
+    // Função para fechar o #search-results
+    function closeSearchResults() {
+      $('#search-results').hide();
+    }
+
+    // Evento de clique no documento
+    $(document).on('click', function(event) {
+      if (!$(event.target).closest('#search-results').length) {
+          closeSearchResults();
+      }
+    });
 })

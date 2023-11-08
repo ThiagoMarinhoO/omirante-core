@@ -50,7 +50,7 @@
                 $product_category_id = $item->object_id;
                 $custom_field_value = get_field('imagem', 'product_cat_' . $product_category_id);
 
-                log_to_file($custom_field_value);
+                // log_to_file($custom_field_value);
 
                 if($args->walker->has_children) {
                     $output .= '<li categoryImage="' . $custom_field_value . '" class="menu-item-has-children">';

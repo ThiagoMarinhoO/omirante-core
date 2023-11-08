@@ -200,3 +200,113 @@
 .home .add_to_cart_button{
   display: none !important;
 }
+
+
+/* XXXXXXXXXXXXXXXXXXF SEARCH BAR STYLES XXXXXXXXXXXXXXXXX */
+
+#seachform {
+  position: relative;
+}
+#search-results {
+  display: none;
+  max-height: 366px;
+  width: 100%;
+  padding: 12px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 12px;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  z-index: 100;
+  overflow-y: auto;
+}
+#searchform input {
+  background: #f1f2f3;
+  border: 0 solid transparent;
+  border-radius: 200px;
+  min-height: 50px;
+  color: #B9B9B9;
+}
+#searchform input:focus {
+  outline: none;
+}
+#searchform input::placeholder {
+  color: #B9B9B9;
+}
+#searchform .searchLupa {
+  display: inline-flex;
+  position: absolute;
+  top: 25%;
+  right: 5%;
+  cursor: pointer;
+  padding: 4px;
+}
+#searchform .searchLupa i {
+  color: #B9B9B9;
+}
+.searched-product-card {
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.searched-product-card:hover {
+  background-color: rgb(249 250 251);
+}
+.searched-product-card:not(:first) {
+  margin-top: 16px;
+}
+.searched-card-image {
+  width: 80px !important;
+  height: 80px !important;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+}
+
+.searched-card-image img {
+  width: 60px !important;
+  height: 60px !important;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+}
+.searched-product-image img yith-wcbm-badge{
+  padding: 0px !important;
+}
+.searched-card-body {
+  width: 100%;
+}
+@media screen and (max-width: 920px) {
+  #search-results {
+    width: 90vw;
+    left: -75%;
+  }
+  #searchform input::placeholder {
+    color: #f1f2f3;
+  }
+}
+
+/* XXXXXXXXXXXXXXXXXXF PÁGINA DE PESQUISA XXXXXXXXXXXXXXXXX */
+
+
+.search.search-results .page-content {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  margin-top: 64px;
+}
+.search.search-results .page-content .entry-title {
+  display: none;
+}
+@media screen and (max-width: 920px) {
+  .search.search-results .page-content {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 32px;
+  }
+}
